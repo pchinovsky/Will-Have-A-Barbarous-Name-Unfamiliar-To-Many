@@ -131,7 +131,7 @@
     object-fit: cover;
 }
 
-.clickable-word:hover,
+.clickable-word:hover, 
 .special-word:hover,
 .box-text:hover {
     color: rgb(104, 54, 185);

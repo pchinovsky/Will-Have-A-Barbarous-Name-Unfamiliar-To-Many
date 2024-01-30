@@ -133,6 +133,14 @@ function onClick(e) {
         }
         box.innerHTML = video;
 
+        // let vid = document.createElement('video');
+        // vid.src = 'https://1drv.ms/v/s!Aji5CC00gzzngbJxROdoyI5TM00qjw?e=dxMCxt';
+        // box.appendChild(vid);
+
+        // let img = document.createElement('img');
+        // img.src = 'https://drive.google.com/file/d/1nf-tg3rGwnYeyR7vEp9kP5Kmk-X9xIY_/view?usp=sharing';
+        // box.appendChild(img);
+
         document.querySelectorAll('.clickable-word, .special-word').forEach(word => {
             if (word.textContent !== e.target.textContent) {
                 if (word.style.opacity > 0.1) word.style.opacity -= 0.05;
