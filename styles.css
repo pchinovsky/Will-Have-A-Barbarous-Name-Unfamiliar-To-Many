@@ -1,0 +1,159 @@
+
+
+.scroll-container {
+    width: 100%;
+    height: 640px;
+    overflow-x: auto;
+    overflow-y: auto;
+    white-space: nowrap;
+    position: relative;
+}
+
+.line-container {
+    white-space: nowrap;
+    font-size: 40px;
+    font-family: Jost;
+    margin-bottom: 20px;
+}
+
+.box-text {
+    font-size: 40px;
+    font-style: italic;
+    color: rgb(54, 54, 185);
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 5px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.box {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid black;
+    padding: 70px;
+    box-sizing: border-box;
+    max-width: 100%;
+    width: 500px;
+    max-height: 600px;
+    z-index: 20;
+    overflow-y: auto;
+    white-space: normal;
+}
+
+.box-third {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid black;
+    padding: 70px;
+    box-sizing: border-box;
+    max-width: 100%;
+    max-width: 700px;
+    max-height: 600px;
+    z-index: 30;
+    overflow-y: auto;
+}
+
+.box-third-vid video {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    object-fit: contain;
+}
+
+.box-third-vid {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid black;
+    padding: 0px;
+    margin: 0px;
+    width: 500px;
+    height: 500px;
+    overflow: hidden;
+    z-index: 30;
+}
+
+.box-special {
+    position: absolute;
+    background-color: white;
+    padding: 0px;
+    box-sizing: border-box;
+    z-index: 19;
+    overflow-y: auto;
+    white-space: normal;
+}
+
+.clickable-word {
+    font-size: 220px;
+    font-family: IBM Plex Mono;
+    display: inline-block;
+    cursor: pointer;
+    transition: color 0.3s;
+    position: relative;
+    padding: 0 4px;
+    margin-right: 45px;
+    vertical-align: top;
+    color: rgb(54, 54, 185);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 10px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.special-word {
+    font-size: 220px;
+    font-family: IBM Plex Mono;
+    display: inline-block;
+    cursor: pointer;
+    transition: color 0.3s;
+    position: relative;
+    padding: 0 4px;
+    margin-right: 45px;
+    vertical-align: top;
+    color: rgb(54, 54, 185);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 10px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.box video {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    object-fit: cover;
+}
+
+.clickable-word:hover,
+.special-word:hover,
+.box-text:hover {
+    color: rgb(104, 54, 185);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 10px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+#clear {
+    background-color: rgb(204, 204, 255);
+    color: white;
+    padding: 8px 10px; 
+    border: none;
+    cursor: pointer;
+    font-size: 14px; 
+    border-radius: 5px; 
+    box-shadow: none;
+    transition: background-color 0.5s; 
+}
+
+#clear:hover {
+    background-color: #73b776;
+}
