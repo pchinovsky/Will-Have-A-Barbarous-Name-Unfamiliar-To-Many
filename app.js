@@ -22,7 +22,7 @@ const boxes = [
 ];
 
 const media = [
-    '<video autoplay loop><source src="https://1drv.ms/v/s!Aji5CC00gzzngbJxROdoyI5TM00qjw?e=T63kci" type = "video/mp4">Your browser does not support the video tag.</video>',
+    'test', '<video autoplay loop><source src="https://github.com/pchinovsky/Will-Have-A-Barbarous-Name-Unfamiliar-To-Many/raw/main/videos/5.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
 ];
 
 lines.forEach((words, lineI) => {
