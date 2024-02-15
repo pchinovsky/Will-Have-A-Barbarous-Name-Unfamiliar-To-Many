@@ -1,28 +1,66 @@
 const lines = [
-    ['will', 'have', 'a', 'barbarous', 'name', 'unfamiliar', 'to', 'many'],
+    ['will', 'have', 'a', 'barbarous', 'name', 'unfamiliar', 'to', 'many', '*'],
     ['partially', 'perceptible', 'to', 'the', 'over-excited']
 ];
 
 const boxes = [
-    ['drivers look at the same things',
-        'headstand, but in reverse',
-        'mean square error of prediction',
-        'blood redistributed',
-        'lost the ability to avoid risky decisions',
-        'pins they pass from one side to the other',
-        'ask what day it was',
-        'all-or-none character'
+    ['-',
+        'set into oscillation by small departures',
+        'drivers look at the same things',
+        '-',
+        'one after the other, to make a choice',
+        '-',
+        'those which had been neglected as a no-man\'s land',
+        'counting out loud or \'humming\'',
+        `Text is composed of arbitrary out-of-context fragments 
+from the following sources - 
+        
+Cybernetics or Control and Communication in the
+Animal and the Machine, Norbert Wiener, 1963;
+Tradition and Identity, David Smith, 1959;
+The First Voyage Around the World, Antonio
+Pigafetta, 1534;
+The Technology of Teaching, B.F.Skinner, 1968; 
+Mathematical Creation, Henri Poincare, 1908;
+A Hat Full of Sky, Terry Pratchett, 2004;
+Sum, David Eagleman, 2009;
+Endurance, Scott Kelly, 2017;`
     ],
-    ['overshoots the mark',
-        'such questions arise independently',
-        'returned here from a hard life',
-        'the capacity to ask',
-        'wrongly believed to be strangers to one another'
+    ['wrongly believed to be strangers to one another',
+        '-',
+        'lost the ability to avoid risky decisions',
+        'because something is true of a pigeon',
+        'came ashore to make peace'
     ]
 ];
 
 const media = [
-    'test', '<video preload="auto" autoplay loop><source src="https://github.com/pchinovsky/Will-Have-A-Barbarous-Name-Unfamiliar-To-Many/raw/main/videos/5.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+    // 'test', '<video preload="auto" autoplay loop><source src="https://github.com/pchinovsky/Will-Have-A-Barbarous-Name-Unfamiliar-To-Many/raw/main/videos/5.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+    '<video autoplay loop><source src="vids/t4.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+    '<video autoplay loop><source src="vids/v4.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+    '<video autoplay loop><source src="vids/t8.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+    '<video autoplay loop><source src="vids/v1.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+    '<video autoplay loop><source src="vids/t3.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+    '<video autoplay loop><source src="vids/v11.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+    '<video autoplay loop><source src="vids/v3.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+    '<video autoplay loop><source src="vids/t10s.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+    '<video autoplay loop><source src="vids/v14.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+    '<video autoplay loop><source src="vids/v12.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+    '<video autoplay loop><source src="vids/t6.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+    '<video autoplay loop><source src="vids/t5.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+    '<video autoplay loop><source src="vids/v2.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+    '<video autoplay loop><source src="vids/t2.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+    '<video autoplay loop><source src="vids/t8s.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+    '<video autoplay loop><source src="vids/v16.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+    '<video autoplay loop><source src="vids/v13.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+    '<video autoplay loop><source src="vids/t7.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+    '<video autoplay loop><source src="vids/v10.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+    '<video autoplay loop><source src="vids/v5.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+    '<video autoplay loop><source src="vids/v6.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+    '<video autoplay loop><source src="vids/v7.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+    '<video autoplay loop><source src="vids/v8.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+    '<video autoplay loop><source src="vids/v9.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+    '<video autoplay loop><source src="vids/v15.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
 ];
 
 lines.forEach((words, lineI) => {
@@ -35,12 +73,16 @@ lines.forEach((words, lineI) => {
         span.textContent = word + " ";
         span.style.opacity = 1;
         span.setAttribute('data-word', word);
-        span.setAttribute('data-line-index', lineI); 
+        span.setAttribute('data-line-index', lineI);
 
-        if (word === 'perceptible' || word === 'barbarous' || word === 'unfamiliar') {
+        if (word === 'will' || word === 'perceptible' || word === 'barbarous' || word === 'unfamiliar') {
             span.classList.add('special-word');
         } else {
             span.classList.add('clickable-word');
+        }
+
+        if (word === '*') {
+            span.style.fontSize = '90px';
         }
 
         let box = createSecondLevelBox(`${lineI}-${i}`);
@@ -54,35 +96,47 @@ lines.forEach((words, lineI) => {
 });
 
 boxes.forEach((boxLine, lineI) => {
-    console.log('boxes done');
     boxLine.forEach((boxContent, boxI) => {
-        const words = boxContent.split(' ');
 
-        words.forEach((word, wordI) => {
+        if (boxContent.startsWith('T')) {
             const box = document.getElementById(`${lineI}-${boxI}`);
-            const box3 = createThirdLevelBox(`box3-${lineI}-${boxI}`);
-            document.getElementById('scroll-container').appendChild(box3);
+            // box.textContent = boxContent;
+            let pre = document.createElement('pre');
+            pre.textContent = boxContent;
+            box.appendChild(pre);
+            box.style.fontSize = '15px';
+            box.style.padding = '40px';
+            box.style.width = '600px';
 
-            let span = document.createElement('span');
-            span.setAttribute('id', wordI);
-            span.textContent = word;
-            span.classList.add('box-text');
+        } else {
+            const words = boxContent.split(' ');
 
-            let gap = document.createElement('span');
-            gap.style.width = '12px';
-            gap.style.display = 'inline-block';
+            words.forEach((word, wordI) => {
+                const box = document.getElementById(`${lineI}-${boxI}`);
+                const box3 = createThirdLevelBox(`box3-${lineI}-${boxI}`);
+                document.getElementById('scroll-container').appendChild(box3);
 
-            box.appendChild(span);
-            box.appendChild(gap);
+                let span = document.createElement('span');
+                span.setAttribute('id', wordI);
+                span.textContent = word;
+                span.classList.add('box-text');
 
-        })
+                let gap = document.createElement('span');
+                gap.style.width = '12px';
+                gap.style.display = 'inline-block';
+
+                box.appendChild(span);
+                box.appendChild(gap);
+
+            })
+        }
     })
 })
 
 
 let currentIndex = 0;
 let isDragging = false;
-let activeBox = null; 
+let activeBox = null;
 let startX, startY, startLeft, startTop;
 
 document.getElementById('scroll-container').addEventListener('click', onClick);
@@ -105,7 +159,7 @@ function onClick(e) {
     const visibleCenterY = containerRect.height / 2;
 
     let content = media[currentIndex];
-    currentIndex = (currentIndex + 1) % media.length; 
+    currentIndex = (currentIndex + 1) % media.length;
 
     if (e.target.classList.contains('special-word')) {
         let clickedWord = e.target;
@@ -124,28 +178,24 @@ function onClick(e) {
 
         let video = '';
 
-        if (clickedWord.textContent === 'barbarous ') {
-            video = '<video autoplay loop><source src="https://1drv.ms/v/s!Aji5CC00gzzngbJxROdoyI5TM00qjw?e=dxMCxt" type = "video/mp4">Your browser does not support the video tag.</video>'
+        if (clickedWord.textContent === 'will ') {
+            // video = '<video autoplay loop><source src="1.mp4" type = "video/mp4">Your browser does not support the video tag.</video>'
+            video = '<video autoplay loop><source src="16.mov" type = "video/mp4">Your browser does not support the video tag.</video>'
+        } else if (clickedWord.textContent === 'barbarous ') {
+            video = '<video class="invert" preload="auto" autoplay loop><source src="5.mp4" type = "video/mp4">Your browser does not support the video tag.</video>';
+            // video.classList.add('invert');
         } else if (clickedWord.textContent === 'unfamiliar ') {
-            video = '<video autoplay loop><source src="4.mp4" type = "video/mp4">Your browser does not support the video tag.</video>'
+            video = '<video autoplay loop><source src="3.mp4" type = "video/mp4">Your browser does not support the video tag.</video>'
         } else if (clickedWord.textContent === 'perceptible ') {
-            video = '<video autoplay loop><source src="5.mp4" type = "video/mp4">Your browser does not support the video tag.</video>'
+            video = '<video autoplay loop><source src="4.mp4" type = "video/mp4">Your browser does not support the video tag.</video>'
         }
         box.innerHTML = video;
 
-        // let vid = document.createElement('video');
-        // vid.src = 'https://1drv.ms/v/s!Aji5CC00gzzngbJxROdoyI5TM00qjw?e=dxMCxt';
-        // box.appendChild(vid);
-
-        // let img = document.createElement('img');
-        // img.src = 'https://drive.google.com/file/d/1nf-tg3rGwnYeyR7vEp9kP5Kmk-X9xIY_/view?usp=sharing';
-        // box.appendChild(img);
-
         document.querySelectorAll('.clickable-word, .special-word').forEach(word => {
             if (word.textContent !== e.target.textContent) {
-                if (word.style.opacity > 0.1) word.style.opacity -= 0.05;
+                if (word.style.opacity > 0.1) word.style.opacity -= 0.025;
             } else {
-                if (word.style.opacity < 1) word.style.opacity = Number(word.style.opacity) + 0.05;
+                if (word.style.opacity < 1) word.style.opacity = Number(word.style.opacity) + 0.025;
             }
         })
 
@@ -158,9 +208,9 @@ function onClick(e) {
 
         document.querySelectorAll('.clickable-word, .special-word').forEach(word => {
             if (word.textContent !== e.target.textContent) {
-                if (word.style.opacity > 0.1) word.style.opacity -= 0.05;
+                if (word.style.opacity > 0.1) word.style.opacity -= 0.025;
             } else {
-                if (word.style.opacity < 1) word.style.opacity = Number(word.style.opacity) + 0.05;
+                if (word.style.opacity < 1) word.style.opacity = Number(word.style.opacity) + 0.025;
             }
         })
 
@@ -238,33 +288,33 @@ document.getElementById('clear').addEventListener('click', function () { clear(t
 function clear(closeAll) {
 
     let container = document.getElementById('scroll-container');
-    let scrollPosition = container.scrollLeft; 
+    let scrollPosition = container.scrollLeft;
 
     if ((Array.from(document.querySelectorAll('.box-third, .box-third-vid')).some(box => box.style.display === 'block')) && closeAll === false) {
         document.querySelectorAll('.box-third, .box-third-vid, .box-special').forEach(box => {
 
             const video = box.querySelector('video');
             if (video) {
-                video.pause(); 
+                video.pause();
                 box.removeChild(video);
             }
             box.style.display = 'none';
 
-            container.scrollLeft = scrollPosition; 
+            container.scrollLeft = scrollPosition;
         });
-        
+
     } else {
 
         document.querySelectorAll('.box, .box-third, .box-third-vid, .box-special').forEach(box => {
 
             const video = box.querySelector('video');
             if (video) {
-                video.pause(); 
+                video.pause();
                 box.removeChild(video);
             }
             box.style.display = 'none';
 
-            container.scrollLeft = scrollPosition; 
+            container.scrollLeft = scrollPosition;
         });
     }
 
@@ -281,7 +331,7 @@ function createThirdLevelBox(id) {
     let box = document.createElement('div');
     box.id = id;
     box.classList.add('box-third');
-    box.style.display = 'none'; 
+    box.style.display = 'none';
     return box;
 }
 
@@ -307,7 +357,7 @@ function dragStart(e) {
     // e.preventDefault();
     e.stopPropagation();
 
-    activeBox = this; 
+    activeBox = this;
 
     let touch = e.touches[0];
     activeBox.startX = touch.clientX;
@@ -326,7 +376,7 @@ function dragMove(e) {
     activeBox.isDragging = true;
 
     if (!activeBox) return;
-    e.preventDefault(); 
+    e.preventDefault();
 
     let touch = e.touches[0];
 
@@ -348,10 +398,10 @@ function dragEnd() {
 
     setTimeout(() => {
         isDragging = false;
-    }, 50); 
+    }, 50);
     document.documentElement.removeEventListener('touchmove', dragMove, { passive: false });
     document.documentElement.removeEventListener('touchend', dragEnd, false);
-    activeBox = null; 
+    activeBox = null;
 }
 
 document.querySelectorAll('.box, .box-third, .box-third-vid, .box-special').forEach(box => {
