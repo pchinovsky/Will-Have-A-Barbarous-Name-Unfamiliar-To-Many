@@ -1,7 +1,7 @@
 const lines = [
-    ['will-', 'have', 'a', 'barbarous', 'name', 'unfamiliar', 'to', 'many', '*'],
+    ['will', 'have', 'a', 'barbarous', 'name', 'unfamiliar', 'to', 'many', '*'],
     ['partially', 'perceptible', 'to', 'the', 'over-excited']
-];
+];x``
 
 const boxes = [
     ['-',
@@ -357,7 +357,7 @@ function getOffsetRelativeToContainer(element, container) {
 }
 
 function dragStart(e) {
-    e.preventDefault();
+    // e.preventDefault();
     e.stopPropagation();
 
     activeBox = this;
