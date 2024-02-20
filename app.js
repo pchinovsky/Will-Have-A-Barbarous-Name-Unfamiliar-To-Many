@@ -380,6 +380,8 @@ function dragStart(e) {
 
 function dragMove(e) {
 
+    e.stopPropagation();
+    
     activeBox.isDragging = true;
 
     if (!activeBox) return;
