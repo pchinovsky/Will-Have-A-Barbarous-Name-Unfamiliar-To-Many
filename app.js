@@ -376,29 +376,36 @@ function dragStart(e) {
     document.documentElement.addEventListener('touchend', dragEnd, false);
 
     activeBox.isDragging = false;
+    activeBox.moved = false;
 }
 
 function dragMove(e) {
-
-    e.stopPropagation();
-    
-    activeBox.isDragging = true;
-
     if (!activeBox) return;
-    e.preventDefault();
 
     let touch = e.touches[0];
+    let dx = touch.clientX - activeBox.startX;
+    let dy = touch.clientY - activeBox.startY;
 
-    let newLeft = activeBox.startLeft + touch.clientX - activeBox.startX;
-    let newTop = activeBox.startTop + touch.clientY - activeBox.startY;
+    if (Math.abs(dx) > 10 || Math.abs(dy) > 10) {
+        activeBox.moved = true; // Consider it a drag if moved more than 10px
+    }
 
-    activeBox.style.left = `${newLeft}px`;
-    activeBox.style.top = `${newTop}px`;
+    if (activeBox.moved) {
+        e.preventDefault(); // Prevent scrolling and other defaults if dragging
+        activeBox.isDragging = true;
+
+        let newLeft = activeBox.startLeft + dx;
+        let newTop = activeBox.startTop + dy;
+
+        activeBox.style.left = `${newLeft}px`;
+        activeBox.style.top = `${newTop}px`;
+    }
 }
 
-function dragEnd() {
 
-    if (!activeBox.isDragging) {
+function dragEnd() {
+    if (!activeBox.isDragging && !activeBox.moved) {
+        // It's a click, simulate the click on the link
         let link = activeBox.querySelector('a');
         if (link) {
             link.click();
@@ -406,12 +413,15 @@ function dragEnd() {
     }
 
     setTimeout(() => {
-        isDragging = false;
+        activeBox.isDragging = false;
+        activeBox.moved = false; // Reset for the next action
     }, 50);
+
     document.documentElement.removeEventListener('touchmove', dragMove, { passive: false });
     document.documentElement.removeEventListener('touchend', dragEnd, false);
     activeBox = null;
 }
+
 
 document.querySelectorAll('.box, .box-third, .box-third-vid, .box-special').forEach(box => {
     box.addEventListener('touchstart', dragStart, false);
