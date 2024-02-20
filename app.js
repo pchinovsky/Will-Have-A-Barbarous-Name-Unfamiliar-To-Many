@@ -1,5 +1,5 @@
 const lines = [
-    ['will-5', 'have', 'a', 'barbarous', 'name', 'unfamiliar', 'to', 'many', '*'],
+    ['will-6', 'have', 'a', 'barbarous', 'name', 'unfamiliar', 'to', 'many', '*'],
     ['partially', 'perceptible', 'to', 'the', 'over-excited']
 ];
 
@@ -377,6 +377,9 @@ function dragStart(e) {
 
     activeBox.isDragging = false;
     activeBox.moved = false;
+
+    document.querySelector('.container').classList.add('no-scroll'); 
+
 }
 
 function dragMove(e) {
@@ -420,6 +423,8 @@ function dragEnd() {
     document.documentElement.removeEventListener('touchmove', dragMove, { passive: false });
     document.documentElement.removeEventListener('touchend', dragEnd, false);
     activeBox = null;
+
+    document.querySelector('.container').classList.remove('no-scroll'); 
 }
 
 
