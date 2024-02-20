@@ -1,5 +1,5 @@
 const lines = [
-    ['will', 'have', 'a', 'barbarous', 'name', 'unfamiliar', 'to', 'many', '*'],
+    ['will--', 'have', 'a', 'barbarous', 'name', 'unfamiliar', 'to', 'many', '*'],
     ['partially', 'perceptible', 'to', 'the', 'over-excited']
 ];
 
@@ -234,6 +234,10 @@ function onClick(e) {
             box.style.top = `${visibleCenterY - box.offsetHeight / boxTopNow}px`;
         }
 
+
+        //
+
+
     } else if (e.target.classList.contains('box-text')) {
 
         const boxId = e.target.parentNode.id;
@@ -354,7 +358,10 @@ function getOffsetRelativeToContainer(element, container) {
 }
 
 function dragStart(e) {
-    // e.preventDefault();
+
+    if (isDragging === true) {
+        e.preventDefault();
+    }
     e.stopPropagation();
 
     activeBox = this;
