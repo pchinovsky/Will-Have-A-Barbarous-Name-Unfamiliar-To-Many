@@ -239,6 +239,9 @@ function onClick(e) {
         const boxId = e.target.parentNode.id;
 
         const box = createThirdLevelBox(boxId)
+
+        box.style.touchAction = 'none';
+        
         box.addEventListener('touchstart', dragStart, false);
         document.querySelector('.scroll-container').appendChild(box);
 
