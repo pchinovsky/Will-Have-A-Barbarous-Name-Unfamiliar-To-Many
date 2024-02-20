@@ -1,5 +1,5 @@
 const lines = [
-    ['will--', 'have', 'a', 'barbarous', 'name', 'unfamiliar', 'to', 'many', '*'],
+    ['will-5', 'have', 'a', 'barbarous', 'name', 'unfamiliar', 'to', 'many', '*'],
     ['partially', 'perceptible', 'to', 'the', 'over-excited']
 ];
 
