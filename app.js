@@ -1,7 +1,7 @@
 const lines = [
-    ['will--', 'have', 'a', 'barbarous', 'name', 'unfamiliar', 'to', 'many', '*'],
+    ['will', 'have', 'a', 'barbarous', 'name', 'unfamiliar', 'to', 'many', '*'],
     ['partially', 'perceptible', 'to', 'the', 'over-excited']
-];x``
+];
 
 const boxes = [
     ['-',
@@ -239,9 +239,6 @@ function onClick(e) {
         const boxId = e.target.parentNode.id;
 
         const box = createThirdLevelBox(boxId)
-
-        box.style.touchAction = 'none';
-        
         box.addEventListener('touchstart', dragStart, false);
         document.querySelector('.scroll-container').appendChild(box);
 
