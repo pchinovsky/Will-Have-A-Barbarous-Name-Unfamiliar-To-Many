@@ -1,5 +1,5 @@
 const lines = [
-    ['will-8', 'have', 'a', 'barbarous', 'name', 'unfamiliar', 'to', 'many', '*'],
+    ['will-9', 'have', 'a', 'barbarous', 'name', 'unfamiliar', 'to', 'many', '*'],
     ['partially', 'perceptible', 'to', 'the', 'over-excited']
 ];
 
@@ -361,9 +361,12 @@ function getOffsetRelativeToContainer(element, container) {
 
 function dragStart(e) {
 
-    if (isDragging === true) {
-        e.preventDefault();
-    }
+    // if (isDragging === true) {
+    //     e.preventDefault();
+    // }
+
+    // e.preventDefault();
+
     e.stopPropagation();
 
     activeBox = this;
@@ -374,7 +377,7 @@ function dragStart(e) {
     activeBox.startLeft = parseInt(document.defaultView.getComputedStyle(activeBox).left, 10);
     activeBox.startTop = parseInt(document.defaultView.getComputedStyle(activeBox).top, 10);
 
-    document.documentElement.addEventListener('touchmove', dragMove, { passive: false });
+    document.documentElement.addEventListener('touchmove', dragMove);
     document.documentElement.addEventListener('touchend', dragEnd, false);
 
     activeBox.isDragging = false;
@@ -424,7 +427,7 @@ function dragEnd() {
         activeBox.moved = false; // Reset for the next action
     }, 50);
 
-    document.documentElement.removeEventListener('touchmove', dragMove, { passive: false });
+    document.documentElement.removeEventListener('touchmove', dragMove);
     document.documentElement.removeEventListener('touchend', dragEnd, false);
     activeBox = null;
 
