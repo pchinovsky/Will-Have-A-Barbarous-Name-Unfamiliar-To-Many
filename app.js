@@ -1,5 +1,5 @@
 const lines = [
-    ['will-12', 'have', 'a', 'barbarous', 'name', 'unfamiliar', 'to', 'many', '*'],
+    ['will-11', 'have', 'a', 'barbarous', 'name', 'unfamiliar', 'to', 'many', '*'],
     ['partially', 'perceptible', 'to', 'the', 'over-excited']
 ];
 
@@ -360,29 +360,47 @@ function getOffsetRelativeToContainer(element, container) {
 }
 
 function dragStart(e) {
-    // Initially assume it's not a drag
-    let isDrag = false;
-
+    e.stopPropagation();
     activeBox = this;
+
     let touch = e.touches[0];
     activeBox.startX = touch.clientX;
     activeBox.startY = touch.clientY;
     activeBox.startLeft = parseInt(document.defaultView.getComputedStyle(activeBox).left, 10);
     activeBox.startTop = parseInt(document.defaultView.getComputedStyle(activeBox).top, 10);
 
-    // Delay to determine if it's a drag
-    const holdToDragDelay = 150; // milliseconds
-    this.dragTimeout = setTimeout(() => {
-        isDrag = true;
-        e.preventDefault(); // Only prevent default if a drag is detected
-        activeBox.isDragging = false;
-        activeBox.moved = false;
-        document.querySelector('.container').classList.add('no-scroll');
-    }, holdToDragDelay);
+    // Initial movement flags
+    activeBox.isDragging = false;
+    activeBox.moved = false;
 
-    document.documentElement.addEventListener('touchmove', dragMove, { passive: false });
-    document.documentElement.addEventListener('touchend', (event) => dragEnd(event, isDrag), false);
+    function updateDragFlag() {
+        activeBox.isDragging = true;
+        document.querySelector('.scroll-container').classList.add('no-scroll');
+    }
+
+    // Modified touchmove handler
+    function conditionalDragMove(event) {
+        let moveTouch = event.touches[0];
+        let dx = Math.abs(moveTouch.clientX - activeBox.startX);
+        let dy = Math.abs(moveTouch.clientY - activeBox.startY);
+
+        // Check if the movement is beyond a threshold to consider it a drag
+        if (dx > 10 || dy > 10) {
+            if (!activeBox.isDragging) {
+                updateDragFlag();
+                event.preventDefault(); // Prevent default only if it's considered a drag
+            }
+        }
+        if (activeBox.isDragging) {
+            // Continue with drag functionality here
+            dragMove(event); // You may need to adjust this part to fit your dragMove logic
+        }
+    }
+
+    document.documentElement.addEventListener('touchmove', conditionalDragMove, { passive: false });
+    document.documentElement.addEventListener('touchend', dragEnd, false);
 }
+
 
 function dragMove(e) {
     if (!activeBox) return;
@@ -410,19 +428,25 @@ function dragMove(e) {
 }
 
 
-function dragEnd(e, isDrag) {
-    clearTimeout(activeBox.dragTimeout); // Clear the timeout to prevent late preventDefault call
-    if (!activeBox.isDragging && !activeBox.moved && !isDrag) {
-        // It's a click, not a drag
+function dragEnd() {
+    if (!activeBox.isDragging && !activeBox.moved) {
+        // It's a click, simulate the click on the link
         let link = activeBox.querySelector('a');
         if (link) {
             link.click();
         }
     }
+
+    setTimeout(() => {
+        activeBox.isDragging = false;
+        activeBox.moved = false; // Reset for the next action
+    }, 50);
+
     document.documentElement.removeEventListener('touchmove', dragMove, { passive: false });
     document.documentElement.removeEventListener('touchend', dragEnd, false);
-    document.querySelector('.container').classList.remove('no-scroll');
     activeBox = null;
+
+    document.querySelector('.scroll-container').classList.remove('no-scroll');
 }
 
 
