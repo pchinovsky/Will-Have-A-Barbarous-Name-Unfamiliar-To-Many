@@ -1,5 +1,5 @@
 const lines = [
-    ['will-10', 'have', 'a', 'barbarous', 'name', 'unfamiliar', 'to', 'many', '*'],
+    ['will-11', 'have', 'a', 'barbarous', 'name', 'unfamiliar', 'to', 'many', '*'],
     ['partially', 'perceptible', 'to', 'the', 'over-excited']
 ];
 
@@ -360,15 +360,7 @@ function getOffsetRelativeToContainer(element, container) {
 }
 
 function dragStart(e) {
-
-    // if (isDragging === true) {
-    //     e.preventDefault();
-    // }
-
-    // e.preventDefault();
-
     e.stopPropagation();
-
     activeBox = this;
 
     let touch = e.touches[0];
@@ -377,14 +369,14 @@ function dragStart(e) {
     activeBox.startLeft = parseInt(document.defaultView.getComputedStyle(activeBox).left, 10);
     activeBox.startTop = parseInt(document.defaultView.getComputedStyle(activeBox).top, 10);
 
+    activeBox.isDragging = false;
+    activeBox.moved = false; // Initially, assume there's no movement
+
+    // Listen for movement to determine if it's a drag
     document.documentElement.addEventListener('touchmove', dragMove, { passive: false });
     document.documentElement.addEventListener('touchend', dragEnd, false);
 
-    activeBox.isDragging = false;
-    activeBox.moved = false;
-
-    document.querySelector('.container').classList.add('no-scroll'); 
-
+    document.querySelector('.container').classList.add('no-scroll');
 }
 
 function dragMove(e) {
@@ -397,11 +389,10 @@ function dragMove(e) {
     let dy = touch.clientY - activeBox.startY;
 
     if (Math.abs(dx) > 10 || Math.abs(dy) > 10) {
-        activeBox.moved = true; // Consider it a drag if moved more than 10px
-    }
-
-    if (activeBox.moved) {
-        e.preventDefault(); // Prevent scrolling and other defaults if dragging
+        if (activeBox.moved) {
+            e.preventDefault(); // Prevent scrolling and other defaults if dragging
+            activeBox.moved = true; // Consider it a drag if moved more than 10px
+        }
         activeBox.isDragging = true;
 
         let newLeft = activeBox.startLeft + dx;
@@ -410,6 +401,7 @@ function dragMove(e) {
         activeBox.style.left = `${newLeft}px`;
         activeBox.style.top = `${newTop}px`;
     }
+
 }
 
 
@@ -431,7 +423,7 @@ function dragEnd() {
     document.documentElement.removeEventListener('touchend', dragEnd, false);
     activeBox = null;
 
-    document.querySelector('.container').classList.remove('no-scroll'); 
+    document.querySelector('.container').classList.remove('no-scroll');
 }
 
 
