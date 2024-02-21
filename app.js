@@ -1,5 +1,5 @@
 const lines = [
-    ['will-11', 'have', 'a', 'barbarous', 'name', 'unfamiliar', 'to', 'many', '*'],
+    ['will-14', 'have', 'a', 'barbarous', 'name', 'unfamiliar', 'to', 'many', '*'],
     ['partially', 'perceptible', 'to', 'the', 'over-excited']
 ];
 
@@ -389,6 +389,7 @@ function dragStart(e) {
             if (!activeBox.isDragging) {
                 updateDragFlag();
                 event.preventDefault(); // Prevent default only if it's considered a drag
+                activeBox.moved = true;
             }
         }
         if (activeBox.isDragging) {
