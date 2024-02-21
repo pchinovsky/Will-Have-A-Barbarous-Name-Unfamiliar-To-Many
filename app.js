@@ -1,5 +1,5 @@
 const lines = [
-    ['will-6', 'have', 'a', 'barbarous', 'name', 'unfamiliar', 'to', 'many', '*'],
+    ['will-7', 'have', 'a', 'barbarous', 'name', 'unfamiliar', 'to', 'many', '*'],
     ['partially', 'perceptible', 'to', 'the', 'over-excited']
 ];
 
@@ -385,6 +385,8 @@ function dragStart(e) {
 function dragMove(e) {
     if (!activeBox) return;
 
+    e.preventDefault();
+
     let touch = e.touches[0];
     let dx = touch.clientX - activeBox.startX;
     let dy = touch.clientY - activeBox.startY;
@@ -415,10 +417,10 @@ function dragEnd() {
         }
     }
 
-    setTimeout(() => {
-        activeBox.isDragging = false;
-        activeBox.moved = false; // Reset for the next action
-    }, 50);
+    // setTimeout(() => {
+    //     activeBox.isDragging = false;
+    //     activeBox.moved = false; // Reset for the next action
+    // }, 50);
 
     document.documentElement.removeEventListener('touchmove', dragMove, { passive: false });
     document.documentElement.removeEventListener('touchend', dragEnd, false);
