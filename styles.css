@@ -61,6 +61,7 @@
     z-index: 20;
     overflow-y: auto;
     white-space: normal;
+    touch-action: manipulation;
 }
 
 .box-third {
@@ -75,6 +76,7 @@
     max-height: 600px;
     z-index: 30;
     overflow-y: auto;
+    touch-action: manipulation;
 }
 
 .box-third-vid video {
