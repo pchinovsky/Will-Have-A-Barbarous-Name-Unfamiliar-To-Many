@@ -1,5 +1,5 @@
 const lines = [
-    ['will-11', 'have', 'a', 'barbarous', 'name', 'unfamiliar', 'to', 'many', '*'],
+    ['will-12', 'have', 'a', 'barbarous', 'name', 'unfamiliar', 'to', 'many', '*'],
     ['partially', 'perceptible', 'to', 'the', 'over-excited']
 ];
 
@@ -360,23 +360,28 @@ function getOffsetRelativeToContainer(element, container) {
 }
 
 function dragStart(e) {
-    e.stopPropagation();
-    activeBox = this;
+    // Initially assume it's not a drag
+    let isDrag = false;
 
+    activeBox = this;
     let touch = e.touches[0];
     activeBox.startX = touch.clientX;
     activeBox.startY = touch.clientY;
     activeBox.startLeft = parseInt(document.defaultView.getComputedStyle(activeBox).left, 10);
     activeBox.startTop = parseInt(document.defaultView.getComputedStyle(activeBox).top, 10);
 
-    activeBox.isDragging = false;
-    activeBox.moved = false; // Initially, assume there's no movement
+    // Delay to determine if it's a drag
+    const holdToDragDelay = 150; // milliseconds
+    this.dragTimeout = setTimeout(() => {
+        isDrag = true;
+        e.preventDefault(); // Only prevent default if a drag is detected
+        activeBox.isDragging = false;
+        activeBox.moved = false;
+        document.querySelector('.container').classList.add('no-scroll');
+    }, holdToDragDelay);
 
-    // Listen for movement to determine if it's a drag
     document.documentElement.addEventListener('touchmove', dragMove, { passive: false });
-    document.documentElement.addEventListener('touchend', dragEnd, false);
-
-    document.querySelector('.container').classList.add('no-scroll');
+    document.documentElement.addEventListener('touchend', (event) => dragEnd(event, isDrag), false);
 }
 
 function dragMove(e) {
@@ -405,25 +410,19 @@ function dragMove(e) {
 }
 
 
-function dragEnd() {
-    if (!activeBox.isDragging && !activeBox.moved) {
-        // It's a click, simulate the click on the link
+function dragEnd(e, isDrag) {
+    clearTimeout(activeBox.dragTimeout); // Clear the timeout to prevent late preventDefault call
+    if (!activeBox.isDragging && !activeBox.moved && !isDrag) {
+        // It's a click, not a drag
         let link = activeBox.querySelector('a');
         if (link) {
             link.click();
         }
     }
-
-    setTimeout(() => {
-        activeBox.isDragging = false;
-        activeBox.moved = false; // Reset for the next action
-    }, 50);
-
     document.documentElement.removeEventListener('touchmove', dragMove, { passive: false });
     document.documentElement.removeEventListener('touchend', dragEnd, false);
-    activeBox = null;
-
     document.querySelector('.container').classList.remove('no-scroll');
+    activeBox = null;
 }
 
 
