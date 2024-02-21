@@ -1,5 +1,5 @@
 const lines = [
-    ['will-7', 'have', 'a', 'barbarous', 'name', 'unfamiliar', 'to', 'many', '*'],
+    ['will-8', 'have', 'a', 'barbarous', 'name', 'unfamiliar', 'to', 'many', '*'],
     ['partially', 'perceptible', 'to', 'the', 'over-excited']
 ];
 
@@ -273,6 +273,8 @@ function onClick(e) {
 
     } else if (e.target.tagName === 'VIDEO') {
 
+        e.stopPropagation();
+
         const video = e.target;
         if (!video.paused) {
             video.pause();
@@ -385,7 +387,7 @@ function dragStart(e) {
 function dragMove(e) {
     if (!activeBox) return;
 
-    e.preventDefault();
+    // e.preventDefault();
 
     let touch = e.touches[0];
     let dx = touch.clientX - activeBox.startX;
@@ -417,10 +419,10 @@ function dragEnd() {
         }
     }
 
-    // setTimeout(() => {
-    //     activeBox.isDragging = false;
-    //     activeBox.moved = false; // Reset for the next action
-    // }, 50);
+    setTimeout(() => {
+        activeBox.isDragging = false;
+        activeBox.moved = false; // Reset for the next action
+    }, 50);
 
     document.documentElement.removeEventListener('touchmove', dragMove, { passive: false });
     document.documentElement.removeEventListener('touchend', dragEnd, false);
