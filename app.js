@@ -35,7 +35,7 @@ Endurance, Scott Kelly, 2017;`
 ];
 
 const media = [
-    // 'test', '<video preload="auto" autoplay loop><source src="https://github.com/pchinovsky/Will-Have-A-Barbarous-Name-Unfamiliar-To-Many/raw/main/videos/5.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+    '<video autoplay loop><source src="vids/t5.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
     '<video autoplay loop><source src="vids/t4.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
     '<video autoplay loop><source src="vids/v4.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
     '<video autoplay loop><source src="vids/t8.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
@@ -47,7 +47,6 @@ const media = [
     '<video autoplay loop><source src="vids/v14.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
     '<video autoplay loop><source src="vids/v12.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
     '<video autoplay loop><source src="vids/t6.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
-    '<video autoplay loop><source src="vids/t5.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
     '<video autoplay loop><source src="vids/v2.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
     '<video autoplay loop><source src="vids/t2.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
     '<video autoplay loop><source src="vids/t8s.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
