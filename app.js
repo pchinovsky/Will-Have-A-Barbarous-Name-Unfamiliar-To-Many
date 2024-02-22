@@ -1,5 +1,5 @@
 const lines = [
-    ['will-15', 'have', 'a', 'barbarous', 'name', 'unfamiliar', 'to', 'many', '*'],
+    ['will-16final', 'have', 'a', 'barbarous', 'name', 'unfamiliar', 'to', 'many', '*'],
     ['partially', 'perceptible', 'to', 'the', 'over-excited']
 ];
 
@@ -132,19 +132,6 @@ boxes.forEach((boxLine, lineI) => {
         }
     })
 })
-
-
-document.addEventListener('click', function(e) {
-    if (e.target.tagName === 'VIDEO') {
-        e.stopPropagation();
-        const video = e.target;
-        if (video.paused) {
-            video.play().catch(e => console.error("Error playing video: ", e));
-        } else {
-            video.pause();
-        }
-    }
-}, true);
 
 
 let currentIndex = 0;
@@ -282,6 +269,17 @@ function onClick(e) {
         } else {
             box.style.left = `${visibleCenterX - box.offsetWidth / 4}px`;
             box.style.top = `${visibleCenterY + box.offsetHeight / boxTopNow}px`;
+        }
+
+    } else if (e.target.tagName === 'VIDEO') {
+
+        e.stopPropagation();
+
+        const video = e.target;
+        if (!video.paused) {
+            video.pause();
+        } else {
+            video.play();
         }
 
     } else {
